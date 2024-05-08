@@ -1,0 +1,91 @@
+require:
+  - rubocop-rails
+
+inherit_gem:
+  vinted-rubocop:
+    - .rubocop.yml
+
+AllCops:
+  TargetRubyVersion: 3.3.0
+  SuggestExtensions: false
+
+Layout:
+  Severity: warning
+
+Lint:
+  Severity: warning
+
+Metrics:
+  Severity: warning
+
+Naming:
+  Severity: warning
+
+Style:
+  Severity: warning
+
+RSpec:
+  Severity: warning
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  AllowedMethods:
+    - insert_all
+    - insert_all!
+    - update_all
+    - upsert
+    - upsert_all
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - db/migrate/*
+
+Metrics/MethodLength:
+  Max: 60
+  Severity: error
+  Exclude:
+    - db/migrate/*
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%i': '()'
+    '%I': '()'
+    '%w': '()'
+    '%W': '()'
+
+Lint/BigIntIds:
+  Include:
+    - db/migrate/*
+
+Metrics/ClassLength:
+  Max: 250
+  CountAsOne: [array, hash, heredoc, method_call]
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - config/routes.rb
+
+Layout/LineLength:
+  Max: 120
+  Severity: error
+
+Style/Documentation:
+  Enabled: false
