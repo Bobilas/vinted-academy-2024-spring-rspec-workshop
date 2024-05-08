@@ -23,7 +23,7 @@ It is quite simple - each exercise covers some features of RSpec, delving deeper
 You can find each exercise in branches (work-in-progress):
 - 01_describe_how_it_works
 - 02_let
-- 02_subject
+- 03_subject
 - 04_factories
 - 05_before
 - 06_mocks_and_stubs
