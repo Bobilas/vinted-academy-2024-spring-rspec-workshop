@@ -2,22 +2,38 @@
 
 RSpec.describe Items::NsfwValidator do
   describe '#nsfw?' do
-    it 'returns true when nsfw' do
-      # TODO: write test
+    # TODO: extract `validator` and `item_name` using let
+
+    context 'when nsfw lowercase' do
+      it 'returns true' do
+        item_name = 'balls'
+        validator = described_class.new(item_name)
+        expect(validator.nsfw?).to be true
+      end
     end
 
-    it 'returns false when sfw' do
-      # TODO: write test
+    context 'when nsfw uppercase' do
+      it 'returns true' do
+        item_name = 'Radioactive Balls'
+        validator = described_class.new(item_name)
+        expect(validator.nsfw?).to be true
+      end
     end
 
-    it 'BONUS 1: fix this failing test and change example group description' do
-      validator = described_class.new('Radioactive Balls')
-      expect(validator.nsfw?).to be true
+    context 'when sfw' do
+      it 'returns false' do
+        item_name = 'This is completely safe'
+        validator = described_class.new(item_name)
+        expect(validator.nsfw?).to be false
+      end
     end
 
-    it 'BONUS 2: fix this failing test and change example group description' do
-      validator = described_class.new(nil)
-      expect(validator.nsfw?).to be false
+    context 'when nil' do
+      it 'returns false' do
+        item_name = nil
+        validator = described_class.new(item_name)
+        expect(validator.nsfw?).to be false
+      end
     end
   end
 end
