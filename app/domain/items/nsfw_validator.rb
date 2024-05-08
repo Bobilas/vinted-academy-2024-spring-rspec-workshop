@@ -6,7 +6,7 @@ class Items::NsfwValidator
   attr_reader :item_name
 
   def initialize(item_name)
-    @item_name = item_name.downcase
+    @item_name = item_name
   end
 
   def nsfw?
