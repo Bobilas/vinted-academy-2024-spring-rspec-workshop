@@ -261,7 +261,7 @@ DEPENDENCIES
   factory_bot_rails
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.1)
-  rspec-rails (~> 6.1)
+  rspec-rails
   rubocop (>= 1.60)
   rubocop-rails
   sqlite3 (~> 1.4)

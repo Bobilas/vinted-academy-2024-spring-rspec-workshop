@@ -52,4 +52,4 @@ group :development do
   gem 'vinted-rubocop', require: false, source: private_gem_source
 end
 
-gem 'rspec-rails', '~> 6.1'
+gem 'rspec-rails'
