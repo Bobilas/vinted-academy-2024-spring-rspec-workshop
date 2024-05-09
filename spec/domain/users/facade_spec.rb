@@ -20,8 +20,7 @@ RSpec.describe Users::Facade do
     end
 
     context 'with duplicate name' do
-      # TODO: refactor this using `before` hook
-      let!(:user) { create :user, name: name }
+      before { create :user, name: name }
 
       it 'fails' do
         expect { subject }.to raise_error ActiveRecord::RecordNotUnique
@@ -48,8 +47,7 @@ RSpec.describe Users::Facade do
     end
 
     context 'when user is already verified' do
-      # TODO: refactor this using `before` hook
-      let(:user) { create :user, :verified }
+      before { described_class.verify(user_id) }
 
       it 'fails' do
         expect { subject }.to raise_error(StandardError).with_message('already verified')
@@ -67,7 +65,13 @@ RSpec.describe Users::Facade do
     it { is_expected.to match_array verified_user_ids }
 
     context 'with all users verified' do
-      # TODO: test this using `before` hook
+      before do
+        unverified_users.pluck(:id).each { |user_id| described_class.verify(user_id) }
+      end
+
+      let(:verified_user_ids) { (verified_users + unverified_users).pluck(:id) }
+
+      it { is_expected.to match_array verified_user_ids }
     end
   end
 end
