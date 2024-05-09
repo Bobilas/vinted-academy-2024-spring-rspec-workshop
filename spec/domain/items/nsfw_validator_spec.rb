@@ -2,8 +2,9 @@
 
 RSpec.describe Items::NsfwValidator do
   let(:validator) { described_class.new(item_name) }
+  let(:keywords) { %w(explosive balls) }
 
-  # TODO: fix flaky tests
+  before { allow(Items::NsfwKeywords).to receive(:run).and_return(keywords) }
 
   describe '#nsfw?' do
     subject { validator.nsfw? }
