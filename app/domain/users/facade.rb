@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Users::Facade
+module Users::Facade
   module_function
 
   def register(name)
