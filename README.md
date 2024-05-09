@@ -1,3 +1,3 @@
-# Exercise 06: mocks and stubs
-- Task 1: fix flaky tests for `Items::NsfwValidator`
-- Task 2: write tests for `Items::Facade` while mocking `Items::NsfwValidator`. Focus on implementing tests for `.upload`
+# Exercise 07: shared contexts and examples
+- Task 1: refactor `Items::NsfwValidator` spec using `shared_examples`
+- Task 2: refactor `Items::Facade.upload` spec using `shared_context` from `spec/support/mocked_nsfw_validator.rb`
