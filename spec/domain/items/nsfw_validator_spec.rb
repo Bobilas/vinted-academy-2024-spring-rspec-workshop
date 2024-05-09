@@ -39,9 +39,7 @@ RSpec.describe Items::NsfwValidator do
   describe '#validate' do
     subject { validator.validate }
 
-    context 'when nsfw' do
-      let(:item_name) { 'EXPLOSIVES' }
-
+    shared_examples 'error' do
       it 'raises error' do
         expect { subject }.to raise_error(StandardError).with_message('item is nsfw')
       end
@@ -51,6 +49,18 @@ RSpec.describe Items::NsfwValidator do
       it 'does not fail' do
         expect { subject }.not_to raise_error
       end
+    end
+
+    context 'when nsfw uppercase' do
+      let(:item_name) { 'EXPLOSIVES' }
+
+      it_behaves_like 'error'
+    end
+
+    context 'when nsfw lowercase' do
+      let(:item_name) { 'explosives' }
+
+      it_behaves_like 'error'
     end
 
     context 'when sfw' do
