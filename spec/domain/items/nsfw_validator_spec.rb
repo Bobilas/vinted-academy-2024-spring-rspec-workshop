@@ -4,7 +4,7 @@ RSpec.describe Items::NsfwValidator do
   let(:validator) { described_class.new(item_name) }
 
   describe '#nsfw?' do
-    # TODO: use subject and convert example groups to one-liners
+    # TODO: use subject and convert examples to one-liners
 
     context 'when nsfw lowercase' do
       let(:item_name) { 'balls' }
