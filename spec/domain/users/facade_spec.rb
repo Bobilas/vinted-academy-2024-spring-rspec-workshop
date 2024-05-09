@@ -20,6 +20,7 @@ RSpec.describe Users::Facade do
     end
 
     context 'with duplicate name' do
+      # TODO: refactor this using `before` hook
       let!(:user) { create :user, name: name }
 
       it 'fails' do
@@ -47,6 +48,7 @@ RSpec.describe Users::Facade do
     end
 
     context 'when user is already verified' do
+      # TODO: refactor this using `before` hook
       let(:user) { create :user, :verified }
 
       it 'fails' do
@@ -63,5 +65,9 @@ RSpec.describe Users::Facade do
     let(:verified_user_ids) { verified_users.pluck(:id) }
 
     it { is_expected.to match_array verified_user_ids }
+
+    context 'with all users verified' do
+      # TODO: test this using `before` hook
+    end
   end
 end
