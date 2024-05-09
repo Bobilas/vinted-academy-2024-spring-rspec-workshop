@@ -1,4 +1,3 @@
-# Exercise 05: before
-- File: `app/domain/users/facade.rb`
-- Spec file: `spec/domain/users/facade_spec.rb`
-- Task: refactor parts of spec using `before` hook
+# Exercise 06: mocks and stubs
+- Task 1: fix flaky tests for `Items::NsfwValidator`
+- Task 2: write tests for `Items::Facade` while mocking `Items::NsfwValidator`. Focus on implementing tests for `.upload`
