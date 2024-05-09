@@ -2,14 +2,14 @@
 
 RSpec.describe Users::Facade do
   describe '.register' do
-    # test here
+    # TODO: write tests
   end
 
   describe '.verify' do
-    # test here
+    # TODO: write tests
   end
 
   describe '.verified_user_ids' do
-    # test here
+    # TODO: write tests
   end
 end
