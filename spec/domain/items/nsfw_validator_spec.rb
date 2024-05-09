@@ -53,7 +53,7 @@ RSpec.describe Items::NsfwValidator do
     context 'when sfw' do
       let(:item_name) { 'This is completely safe' }
 
-      it 'raises error' do
+      it 'does not fail' do
         expect { subject }.not_to raise_error
       end
     end
@@ -61,7 +61,7 @@ RSpec.describe Items::NsfwValidator do
     context 'when nil' do
       let(:item_name) { nil }
 
-      it 'raises error' do
+      it 'does not fail' do
         expect { subject }.not_to raise_error
       end
     end
