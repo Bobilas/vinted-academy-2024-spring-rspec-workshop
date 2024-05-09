@@ -31,10 +31,20 @@ RSpec.describe Items::NsfwValidator do
   describe '#validate' do
     subject { validator.validate }
 
-    context 'when nsfw' do
+    context 'when nsfw uppercase' do
       let(:item_name) { 'EXPLOSIVES' }
 
       it 'raises error' do
+        # TODO: extract to shared examples
+        expect { subject }.to raise_error(StandardError).with_message('item is nsfw')
+      end
+    end
+
+    context 'when nsfw lowercase' do
+      let(:item_name) { 'explosives' }
+
+      it 'raises error' do
+        # TODO: extract to shared examples
         expect { subject }.to raise_error(StandardError).with_message('item is nsfw')
       end
     end
