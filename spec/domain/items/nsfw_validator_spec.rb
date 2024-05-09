@@ -9,22 +9,30 @@ RSpec.describe Items::NsfwValidator do
   describe '#nsfw?' do
     subject { validator.nsfw? }
 
+    shared_examples 'nsfw true' do
+      it { is_expected.to be true }
+    end
+
+    shared_examples 'nsfw false' do
+      it { is_expected.to be true }
+    end
+
     context 'when nsfw' do
       let(:item_name) { 'EXPLOSIVES' }
 
-      it { is_expected.to be true } # TODO: extract to shared_examples
+      it_behaves_like 'nsfw true'
     end
 
     context 'when sfw' do
       let(:item_name) { 'This is completely safe' }
 
-      it { is_expected.to be false } # TODO: extract to shared_examples
+      it_behaves_like 'nsfw false'
     end
 
     context 'when nil' do
       let(:item_name) { nil }
 
-      it { is_expected.to be false } # TODO: extract to shared_examples
+      it_behaves_like 'nsfw false'
     end
   end
 
@@ -39,20 +47,22 @@ RSpec.describe Items::NsfwValidator do
       end
     end
 
+    shared_examples 'no error' do
+      it 'does not fail' do
+        expect { subject }.not_to raise_error
+      end
+    end
+
     context 'when sfw' do
       let(:item_name) { 'This is completely safe' }
 
-      it 'raises error' do
-        expect { subject }.not_to raise_error # TODO: extract to shared_examples
-      end
+      it_behaves_like 'no error'
     end
 
     context 'when nil' do
       let(:item_name) { nil }
 
-      it 'raises error' do
-        expect { subject }.not_to raise_error # TODO: extract to shared_examples
-      end
+      it_behaves_like 'no error'
     end
   end
 end

@@ -12,6 +12,8 @@ RSpec.describe Items::Facade do
   describe '.upload' do
     subject { described_class.upload(**params) }
 
+    include_context 'with mocked nsfw validator'
+
     let(:params) do
       {
         user_id: user_id,
@@ -26,14 +28,7 @@ RSpec.describe Items::Facade do
     let(:name) { 'test_item' }
     let(:price) { 42 }
     let(:skip_nsfw_validation?) { false }
-
-    let(:nsfw_validator) { instance_double Items::NsfwValidator, nsfw?: nsfw? }
-    let(:nsfw?) { double :nsfw? }
-
-    before do
-      allow(Items::NsfwValidator).to receive(:new).with(name).and_return(nsfw_validator)
-      allow(nsfw_validator).to receive(:validate)
-    end
+    let(:nsfw?) { false }
 
     it 'validates nsfw' do
       expect(nsfw_validator).to receive(:validate)
@@ -43,6 +38,14 @@ RSpec.describe Items::Facade do
     it 'uploads item' do
       subject
       expect(Item).to exist(user_id: user_id, name: name, price: price, is_nsfw: nsfw?)
+    end
+
+    context 'when nsfw' do
+      let(:nsfw?) { true }
+
+      it 'fails' do
+        expect { subject }.to raise_error(nsfw_validation_error)
+      end
     end
 
     context 'when validation is skipped' do
