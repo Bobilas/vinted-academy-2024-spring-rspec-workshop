@@ -20,8 +20,4 @@ RSpec.describe Items::NsfwValidator do
       expect(validator.nsfw?).to be false
     end
   end
-
-  it 'fails' do
-    expect { 1 / 0 }.to raise_error(ZeroDivisionError)
-  end
 end
